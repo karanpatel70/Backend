@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-slate-100 text-slate-900">
+    <main class="mx-auto grid min-h-screen max-w-5xl place-items-center gap-8 p-6 md:grid-cols-2">
+      <div class="w-full">
+        <form
+          action="/tasks"
+          method="POST"
+          class="rounded-xl bg-white p-6 shadow-md"
+        >
+          <h1 class="mb-2 text-2xl font-bold">Task Manager</h1>
+          <p class="mb-4 text-sm text-slate-600">Add a task and it will be saved as its own file.</p>
+          <input
+            class="block border border-gray-300 p-2 rounded w-full mb-4"
+            type="text"
+            name="name"
+            placeholder="Your name"
+            required
+          />
+          <textarea
+            class="block border border-gray-300 p-2 rounded w-full mb-4"
+            name="task"
+            placeholder="Task details"
+            required
+          ></textarea>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <section class="w-full rounded-xl bg-white p-6 shadow-md">
+        <h2 class="mb-4 text-2xl font-bold">Saved Tasks</h2>
+        <% if (tasks.length === 0) { %>
+          <p class="text-slate-500">No tasks yet.</p>
+        <% } else { %>
+          <ul class="space-y-3">
+            <% tasks.forEach((item) => { %>
+              <li class="rounded-lg border border-slate-200 p-4">
+                <p class="font-semibold"><%= item.name %></p>
+                <p class="mt-1 whitespace-pre-wrap text-slate-700"><%= item.task %></p>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>
