@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create User</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="form-card">
+        <p class="eyebrow">User manager</p>
+        <h1>Create a user</h1>
+        <p class="intro">Save a name, email address, and profile image.</p>
+        <% if (typeof error !== "undefined") { %>
+          <p class="error" role="alert"><%= error %></p>
+        <% } %>
+        <form action="/users" method="POST" enctype="multipart/form-data">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required autocomplete="name" />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+
+          <label for="image">Image</label>
+          <input id="image" name="image" type="file" accept="image/*" required />
+
+          <button class="button primary" type="submit">Create user</button>
+        </form>
+        <a class="text-link" href="/read">View saved users</a>
+      </section>
+    </main>
+  </body>
+</html>

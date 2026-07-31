@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Users</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <main class="page-shell wide">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">User manager</p>
+          <h1>Saved users</h1>
+        </div>
+        <a class="button primary" href="/">Add user</a>
+      </header>
+
+      <% if (users.length) { %>
+        <section class="user-grid">
+          <% users.forEach((user) => { %>
+            <article class="user-card">
+              <img src="<%= user.image %>" alt="Profile of <%= user.name %>" />
+              <div class="user-details">
+                <h2><%= user.name %></h2>
+                <p><%= user.email %></p>
+              </div>
+              <div class="actions">
+                <button class="button secondary" type="button">Edit</button>
+                <form action="/users/<%= user._id %>/delete" method="POST">
+                  <button class="button danger" type="submit">Delete</button>
+                </form>
+              </div>
+            </article>
+          <% }) %>
+        </section>
+      <% } else { %>
+        <section class="empty-state">
+          <h2>No users yet</h2>
+          <p>Create your first user to see it here.</p>
+        </section>
+      <% } %>
+    </main>
+  </body>
+</html>
